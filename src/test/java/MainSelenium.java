@@ -7,6 +7,7 @@ public class MainSelenium {
         //System.setProperty("webdriver.chrome.driver", "src/test/chromedriver-win64.zip");
         //ChromeDriver driver = new ChromeDriver();
 
+
         WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver();
     }
