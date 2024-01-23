@@ -15,10 +15,16 @@ public class MainSelenium {
 
         driver.get("https://demoqa.com"); // focusul nu se poate schimba daca navigam manual pe alte taburi !!
 
-        WebElement element1 = driver.findElement(By.xpath("//div[@class='home-banner']/a"));
-        WebElement element2 = driver.findElement(By.cssSelector("div.home-banner a"));
-        element2.click();
+//        WebElement element1 = driver.findElement(By.xpath("//div[@class='home-banner']/a"));
+//        WebElement element2 = driver.findElement(By.cssSelector("div.home-banner a"));
+//        element2.click();
 
+//        WebElement header = driver.findElement(By.tagName("header"));
+//        header.click();
+
+        driver.get("https://demoqa.com/webtables");
+        WebElement button = driver.findElement(By.id("addNewRecordButton"));
+        button.click();
 
 
 
