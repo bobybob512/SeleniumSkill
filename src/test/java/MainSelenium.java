@@ -19,13 +19,25 @@ public class MainSelenium {
 //        WebElement element2 = driver.findElement(By.cssSelector("div.home-banner a"));
 //        element2.click();
 
+        //By.TagName
 //        WebElement header = driver.findElement(By.tagName("header"));
 //        header.click();
 
-        driver.get("https://demoqa.com/webtables");
-        WebElement button = driver.findElement(By.id("addNewRecordButton"));
-        button.click();
+        //By.id
+//        driver.get("https://demoqa.com/webtables");
+//        WebElement button = driver.findElement(By.id("addNewRecordButton"));
+//        button.click();
 
+        //By.LinkText
+//    driver.get("https://demoqa.com/links");
+//    WebElement link = driver.findElement(By.linkText("Home"));
+//    link.click();
+
+
+        //By.Name
+        driver.get("https://demoqa.com");
+        WebElement meta = driver.findElement(By.name("viewport"));
+        System.out.println(meta.getAttribute("content"));
 
 
         driver.close(); //inchide doar tabul pe care are focusul
