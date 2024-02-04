@@ -6,11 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class MainSelenium {
     public static void main(String[] args) {
@@ -111,9 +113,33 @@ public class MainSelenium {
         WebElement doubleClick = driver.findElement(By.id("doubleClickBtn"));
         Actions actions = new Actions(driver);
         actions.doubleClick(doubleClick).build().perform();
+
         WebElement message = driver.findElement(By.id("doubleClickMessage"));
         assertEquals(message.getText(), "You have done a double click", "Double click was unsuccessful");
         driver.quit();
+    }
+
+    @Test
+    public static void rightClick(){
+        WebDriverManager.chromedriver().setup();
+        SoftAssert softAssert = new SoftAssert();
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/buttons");
+        driver.findElement(By.cssSelector("button[aria-label=\"Consent\"] p")).click();
+        WebElement rightClickButton = driver.findElement(By.id("rightClickBtn"));
+
+        softAssert.assertFalse(rightClickButton.isDisplayed(), "Right click button is not displayed");
+        Actions actions = new Actions(driver);
+        actions.contextClick(rightClickButton).build().perform();
+
+
+        WebElement message = driver.findElement(By.id("rightClickMessage"));
+        softAssert.assertEquals(message.getText(), "You have done a right clickkkk", "Right click was unsuccessful");
+        //softAssert.assertAll();
+
+        driver.quit();
+        softAssert.assertAll();
+
     }
 }
 
