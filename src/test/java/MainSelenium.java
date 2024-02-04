@@ -1,8 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import java.util.Set;
 
 public class MainSelenium {
     public static void main(String[] args) {
@@ -14,6 +18,35 @@ public class MainSelenium {
         ChromeDriver driver = new ChromeDriver();
 
         driver.get("https://demoqa.com"); // focusul nu se poate schimba daca navigam manual pe alte taburi !!
+
+        WebElement tabButton = driver.findElement(By.id("tabButton"));
+        tabButton.click();
+
+        String parentWindow = driver.getWindowHandle();
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String window : windowHandles) {
+            if (!window.equals(parentWindow)) {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
+
+        System.out.println(driver.findElement(By.id("smapleHeading")).getText());
+        driver.close();
+
+        driver.switchTo().window(parentWindow);
+        driver.findElement(By.id("windowButton")).click();
+        Set<String> windowHandles2 = driver.getWindowHandles();
+
+        for (String window : windowHandles2) {
+            if (!window.equals(parentWindow)) {
+                driver.switchTo().window(window);
+            }
+        }
+
+        System.out.println(driver.findElement(By.id("sampleHeading")).getText());
+        driver.close();
 
 //        WebElement element1 = driver.findElement(By.xpath("//div[@class='home-banner']/a"));
 //        WebElement element2 = driver.findElement(By.cssSelector("div.home-banner a"));
@@ -35,14 +68,24 @@ public class MainSelenium {
 
 
         //By.Name
-        driver.get("https://demoqa.com");
-        WebElement meta = driver.findElement(By.name("viewport"));
-        System.out.println(meta.getAttribute("content"));
+//        driver.get("https://demoqa.com");
+//        WebElement meta = driver.findElement(By.name("viewport"));
+//        System.out.println(meta.getAttribute("content"));
 
 
-        driver.close(); //inchide doar tabul pe care are focusul
+        // driver.close(); //inchide doar tabul pe care are focusul
         driver.quit(); //inchide tot si termina sesiunea de chromedriver..
 
         System.out.println("Finish");
     }
+
+    @Test
+    public void primulTest() {
+        WebDriverManager.chromedriver().setup();
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/browser-windows");
+        driver.quit();
+        throw new RuntimeException("Custom made exception");
+    }
 }
+
