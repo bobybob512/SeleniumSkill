@@ -4,9 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
 
 public class MainSelenium {
     public static void main(String[] args) {
@@ -80,12 +84,36 @@ public class MainSelenium {
     }
 
     @Test
+    public void assertTest(){
+        WebDriverManager.chromedriver().setup();
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/");
+        List<WebElement> cards = driver.findElements(By.className("card"));
+        assertEquals(cards.size(), 6, "Wrong card size");
+
+        driver.quit();
+    }
+
+    @Test
     public void primulTest() {
         WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/browser-windows");
         driver.quit();
         throw new RuntimeException("Custom made exception");
+    }
+@Test
+    public static void doubleClick(){
+        WebDriverManager.chromedriver().setup();
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/buttons");
+        driver.findElement(By.cssSelector("button[aria-label=\"Consent\"] p")).click();
+        WebElement doubleClick = driver.findElement(By.id("doubleClickBtn"));
+        Actions actions = new Actions(driver);
+        actions.doubleClick(doubleClick).build().perform();
+        WebElement message = driver.findElement(By.id("doubleClickMessage"));
+        assertEquals(message.getText(), "You have done a double click", "Double click was unsuccessful");
+        driver.quit();
     }
 }
 
