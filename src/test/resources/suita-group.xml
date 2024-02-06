@@ -13,6 +13,7 @@
         </classes>
     </test>
 
+
     <test name="Al doilea grup test din TestNG .xml">
         <groups>
             <run>
