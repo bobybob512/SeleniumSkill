@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng/testng-1.0.dtd">
+
+<suite name="Suita metoda" verbose="1">
+    <test name="Primul test din TestNG .xml">
+        <classes>
+            <class name="com.first.packet.SeleniumAnnotations">
+                <methods>
+                    <exclude name="test1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Al doilea test din TestNG .xml">
+        <classes>
+            <class name="com.first.packet.SeleniumAnnotations">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
