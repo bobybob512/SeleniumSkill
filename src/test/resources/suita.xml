@@ -1,0 +1,20 @@
+<suite name="Prima suita de TestNG" verbose="1">
+    <test name="Primul test din TestNG .xml">
+        <classes>
+            <class name="com.first.packet.SeleniumAnnotations"/>
+            <methods>
+<!--                <exclude name="test1"/>-->
+                <include name="test1"/>
+            </methods>
+        </classes>
+<!--        <packages>-->
+<!--            <package name="com.first.packet.*"/>-->
+<!--        </packages>-->
+    </test>
+
+<!--    <test name="Al doilea test din TestNG .xml">-->
+<!--        <classes>-->
+<!--            <class name="SeleniumTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>
