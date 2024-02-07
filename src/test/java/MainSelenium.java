@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -15,6 +16,20 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class MainSelenium {
+
+    @DataProvider(name = "myFirstDataProvider")
+    public static Object[][] myFirstDataProvider(){
+        return new Object[][] {
+                {"/elements"},
+                {"/forms"},
+                {"/alertsWindows"},
+                {"/widgets"},
+                {"/interaction"},
+                {"/books"}
+        };
+
+    }
+
     public static void main(String[] args) {
         //System.setProperty("webdriver.chrome.driver", "src/test/chromedriver-win64.zip");
         //ChromeDriver driver = new ChromeDriver();
